@@ -135,3 +135,18 @@ python lora_finetune.py \
 
 2. Jalankan training:
    `python training/scripts/train_unsloth.py`
+
+
+## 🐢 Training di CPU (Tanpa GPU)
+
+Untuk server tanpa GPU, gunakan `llama.cpp`:
+
+```bash
+# 1. Build llama.cpp
+git clone https://github.com/ggerganov/llama.cpp
+cd llama.cpp && make
+
+# 2. Jalankan script CPU
+chmod +x training/scripts/train_cpu.sh
+./training/scripts/train_cpu.sh
+```
