@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  llm-api:
+    build:
+      context: ../docker
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./models:/app/models
+      - ../training/configs:/app/configs
+    env_file:
+      - ../.env
+    restart: unless-stopped
+
+  gradio-ui:
+    image: python:3.11-slim
+    working_dir: /app
+    command: sh -c "pip install gradio fastapi && python ui/app.py"
+    volumes:
+      - ../inference/ui:/app
+    ports:
+      - "7860:7860"
+    depends_on:
+      - llm-api
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - grafana-data:/var/lib/grafana
+    restart: unless-stopped
+
+volumes:
+  grafana-data:
