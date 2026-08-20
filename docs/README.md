@@ -1,4 +1,4 @@
-# 🚨 Polri LLM V4 Clone — AI Setara DeepSeek V4
+# 🚨 DIY LLM V4 Clone — AI Setara DeepSeek V4
 
 > Proyek **open-source** untuk **membangun AI bahasa** setara dengan **DeepSeek-V4**, dilatih untuk konteks **hukum, kepolisian, dan bahasa Indonesia**.
 
@@ -12,7 +12,7 @@
 | **Jumlah Parameter** | 8B – 15B |
 | **Token Context** | 128K |
 | **Bahasa** | Multi-bahasa, fokus Indonesia |
-| **Training Data** | 2T token + domain hukum/Polri |
+| **Training Data** | 2T token + domain hukum/DIY |
 | **Inferensi** | OpenAI-compatible API |
 | **UI** | Gradio / Chat UI |
 | **Monitoring** | Prometheus + Grafana |
@@ -22,7 +22,7 @@
 ## 📁 Struktur Proyek
 
 ```
-polri-llm-v4-clone/
+diy-llm-v4-clone/
 ├── models/                       # Folder untuk checkpoint model
 ├── training/
 │   ├── dataset/                  # Dataset JSON / JSONL
@@ -45,8 +45,8 @@ polri-llm-v4-clone/
 
 ### 1. Clone Repository
 ```bash
-git clone https://github.com/vanderstark/polri-llm-v4-clone.git
-cd polri-llm-v4-clone
+git clone https://github.com/vanderstark/diy-llm-v4-clone.git
+cd diy-llm-v4-clone
 ```
 
 ### 2. Jalankan dengan Docker Compose
@@ -74,7 +74,7 @@ python train.py --config ../configs/deepseek_clone.yaml
 ```yaml
 model_name: "deepseek-ai/deepseek-v4-tiny-clone"
 tokenizer: "deepseek-ai/DeepSeek-V4-BPE"
-dataset_path: "../dataset/polri_training_data.jsonl"
+dataset_path: "../dataset/diy_training_data.jsonl"
 output_dir: "/app/models/checkpoints"
 per_device_train_batch_size: 8
 gradient_accumulation_steps: 4
@@ -97,8 +97,8 @@ Gunakan LoRA / QLoRA agar tidak perlu training full model:
 ```bash
 python lora_finetune.py \
   --base_model "deepseek-ai/deepseek-v4-tiny" \
-  --dataset "../dataset/polri_qa.jsonl" \
-  --output_dir "../checkpoints/lora-polri-v4" \
+  --dataset "../dataset/diy_qa.jsonl" \
+  --output_dir "../checkpoints/lora-diy-v4" \
   --per_device_train_batch_size 4 \
   --lora_r 64 \
   --lora_alpha 16 \
@@ -126,4 +126,4 @@ python lora_finetune.py \
 
 ---
 
-## © 2025 Polri LLM V4 Clone
+## © 2025 DIY LLM V4 Clone
