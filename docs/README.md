@@ -127,3 +127,11 @@ python lora_finetune.py \
 ---
 
 ## © 2025 DIY LLM V4 Clone
+
+## 🏋️ Training di Server GPU
+
+1. Install Unsloth:
+   `pip install unsloth`
+
+2. Jalankan training:
+   `python training/scripts/train_unsloth.py`
