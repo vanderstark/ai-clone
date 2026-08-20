@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: ../docker
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./models:/app/models
+      - ./rag:/app/rag
+      - ../training/dataset:/app/training/dataset
+    environment:
+      - TRANSFORMERS_CACHE=/app/models
+    command: python /app/api/app.py
+    restart: unless-stopped
+
+  ui:
+    image: gradio/gradio:latest
+    ports:
+      - "7860:7860"
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: python -m ui.demo
+    restart: unless-stopped
+
+volumes:
+  models:
+  rag:
