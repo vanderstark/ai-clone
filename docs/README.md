@@ -150,3 +150,16 @@ cd llama.cpp && make
 chmod +x training/scripts/train_cpu.sh
 ./training/scripts/train_cpu.sh
 ```
+
+
+## 📚 Memori Tanpa Batas (RAG Pipeline)
+
+Untuk memberi AI memori dokumen berukuran GB:
+
+```bash
+# 1. Install deps
+pip install langchain langchain-community langchain-huggingface chromadb
+
+# 2. Ingest dokumen
+python rag/pipeline.py
+```
